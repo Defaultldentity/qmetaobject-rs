@@ -1,0 +1,13 @@
+diff --git a/qmetaobject_impl/src/qobject_impl.rs b/qmetaobject_impl/src/qobject_impl.rs
+index 7645cbf..3a72cb6 100644
+--- a/qmetaobject_impl/src/qobject_impl.rs
++++ b/qmetaobject_impl/src/qobject_impl.rs
+@@ -799,7 +799,7 @@ pub fn generate(input: TokenStream, is_qobject: bool) -> TokenStream {
+                 assert!(pinned.borrow().#base_prop.get().is_null());
+                 let object_ptr = #crate_::QObjectPinned::<#crate_::QObject>::new(pinned as &::std::cell::RefCell<#crate_::QObject>);
+                 let object_ptr_ptr : *const #crate_::QObjectPinned<#crate_::QObject> = &object_ptr;
+-                let rust_pinned = #crate_::QObjectPinned::<dyn #base>::new(pinned as &::std::cell::RefCell<dyn #base>);
++                let rust_pinned = #crate_::QObjectPinned::<#base>::new(pinned as &::std::cell::RefCell<dyn #base>);
+                 let rust_pinned_ptr : *const #crate_::QObjectPinned<dyn #base> = &rust_pinned;
+                 let n = (<#name #ty_generics as #base>::get_object_description().create)
+                     (rust_pinned_ptr as *const ::std::os::raw::c_void, object_ptr_ptr as *const ::std::os::raw::c_void);
